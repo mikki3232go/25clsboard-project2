@@ -1,6 +1,6 @@
 import { connectDB } from "@/util/database";
 import { ObjectId } from "mongodb";
-import Comment from "./comment"; //2-0. 댓글 컴포넌트 임포트
+import Comment from "./comment._answer"; //2-0. 댓글 컴포넌트 임포트
 //주요기능
 //0. db 접속하기
 //1. id를 전달받아 조건에 맞는 레코드 가져오기

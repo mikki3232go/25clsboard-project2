@@ -10,15 +10,9 @@ import { ObjectId } from "mongodb";
 
 export async function POST(request) {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    return new Response(JSON.stringify("로그인이 필요합니다"), { status: 401 });
-  }
+
   const body = await request.json();
-  if (!body.content || !body.parent) {
-    return new Response(JSON.stringify("필수 데이터가 누락되었습니다"), {
-      status: 400,
-    });
-  }
+
   const 입력내용 = {
     content: body.content,
     parent: new ObjectId(body.parent),
@@ -26,8 +20,5 @@ export async function POST(request) {
   };
   const db = (await connectDB).db("board");
   const result = await db.collection("comment").insertOne(입력내용);
-  return new Response(JSON.stringify(result), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
-  });
+  return new Response(JSON.stringify(result));
 }
